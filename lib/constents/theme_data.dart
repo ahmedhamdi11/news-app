@@ -5,6 +5,7 @@ import 'app_colors.dart';
 ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   hintColor: Colors.grey.shade700,
+  cardColor: darkPrimaryColor,
   appBarTheme: AppBarTheme(backgroundColor: darkScaffoldColor),
   colorScheme: ColorScheme.fromSeed(
     seedColor: darkPrimaryColor,
@@ -18,6 +19,7 @@ ThemeData darkTheme = ThemeData(
 ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   hintColor: Colors.grey.shade700,
+  cardColor: darkPrimaryColor,
   appBarTheme: AppBarTheme(backgroundColor: lightScaffoldColor),
   colorScheme: ColorScheme.fromSeed(
     seedColor: lightPrimaryColor,

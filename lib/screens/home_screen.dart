@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:news_app/widgets/custom_drawer.dart';
+import 'package:news_app/widgets/home_screen_body.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       drawer: const CustomDrawer(),
+      body: const HomeScreenBody(),
     );
   }
 }
