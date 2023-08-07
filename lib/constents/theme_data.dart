@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 // dark theme
@@ -6,6 +7,7 @@ ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   hintColor: Colors.grey.shade700,
   cardColor: darkPrimaryColor,
+  textTheme: GoogleFonts.ptSansTextTheme(ThemeData.dark().textTheme),
   appBarTheme: AppBarTheme(backgroundColor: darkScaffoldColor),
   colorScheme: ColorScheme.fromSeed(
     seedColor: darkPrimaryColor,
@@ -19,7 +21,8 @@ ThemeData darkTheme = ThemeData(
 ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   hintColor: Colors.grey.shade700,
-  cardColor: darkPrimaryColor,
+  cardColor: lightPrimaryColor,
+  textTheme: GoogleFonts.ptSansTextTheme(ThemeData.light().textTheme),
   appBarTheme: AppBarTheme(backgroundColor: lightScaffoldColor),
   colorScheme: ColorScheme.fromSeed(
     seedColor: lightPrimaryColor,

@@ -24,12 +24,10 @@ class CustomAnimatedTab extends StatelessWidget {
         ),
         child: AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 200),
-          style: TextStyle(
-            fontSize: isSelected ? 22.0 : 14.0,
-            color: Provider.of<ThemeProvider>(context).isDarkTheme
-                ? Colors.white
-                : Colors.black,
-          ),
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                fontSize: isSelected ? 20.0 : 14.0,
+                fontWeight: FontWeight.w500,
+              ),
           child: Text(
             text,
           ),
