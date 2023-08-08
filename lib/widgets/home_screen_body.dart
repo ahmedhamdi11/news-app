@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/widgets/home_screen_tabs.dart';
 import 'package:news_app/widgets/pagination_control.dart';
+import 'package:news_app/widgets/sortyby_drop_menu.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
@@ -12,10 +13,10 @@ class HomeScreenBody extends StatelessWidget {
       child: Column(
         children: [
           HomeScreenTabs(),
-          SizedBox(
-            height: 16.0,
-          ),
+          SizedBox(height: 16.0),
           PaginationControl(),
+          SizedBox(height: 16.0),
+          SortByDropMenu(),
         ],
       ),
     );
