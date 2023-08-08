@@ -8,7 +8,8 @@ ThemeData darkTheme = ThemeData(
   hintColor: Colors.grey.shade700,
   cardColor: darkPrimaryColor,
   textTheme: GoogleFonts.ptSansTextTheme(ThemeData.dark().textTheme),
-  appBarTheme: AppBarTheme(backgroundColor: darkScaffoldColor),
+  appBarTheme: AppBarTheme(
+      backgroundColor: darkScaffoldColor, scrolledUnderElevation: 0.0),
   colorScheme: ColorScheme.fromSeed(
     seedColor: darkPrimaryColor,
     brightness: Brightness.dark,
@@ -23,7 +24,8 @@ ThemeData lightTheme = ThemeData(
   hintColor: Colors.grey.shade700,
   cardColor: lightPrimaryColor,
   textTheme: GoogleFonts.ptSansTextTheme(ThemeData.light().textTheme),
-  appBarTheme: AppBarTheme(backgroundColor: lightScaffoldColor),
+  appBarTheme: AppBarTheme(
+      backgroundColor: lightScaffoldColor, scrolledUnderElevation: 0.0),
   colorScheme: ColorScheme.fromSeed(
     seedColor: lightPrimaryColor,
     brightness: Brightness.light,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/widgets/articles_listview.dart';
 import 'package:news_app/widgets/home_screen_tabs.dart';
 import 'package:news_app/widgets/pagination_control.dart';
 import 'package:news_app/widgets/sortyby_drop_menu.dart';
@@ -17,6 +18,8 @@ class HomeScreenBody extends StatelessWidget {
           PaginationControl(),
           SizedBox(height: 16.0),
           SortByDropMenu(),
+          SizedBox(height: 16.0),
+          Expanded(child: ArticlesListView()),
         ],
       ),
     );
