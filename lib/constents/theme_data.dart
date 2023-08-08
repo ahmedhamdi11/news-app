@@ -21,7 +21,7 @@ ThemeData darkTheme = ThemeData(
 // light theme
 ThemeData lightTheme = ThemeData(
   useMaterial3: true,
-  hintColor: Colors.grey.shade700,
+  hintColor: Colors.grey.shade400,
   cardColor: lightPrimaryColor,
   textTheme: GoogleFonts.ptSansTextTheme(ThemeData.light().textTheme),
   appBarTheme: AppBarTheme(

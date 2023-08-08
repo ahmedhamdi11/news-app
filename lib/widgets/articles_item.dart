@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/widgets/loading_shimmer/image_placeholder_loading.dart';
 
 class ArticleItme extends StatelessWidget {
   const ArticleItme({super.key});
@@ -41,6 +42,8 @@ class ArticleItme extends StatelessWidget {
                       width: w * 0.24,
                       height: w * 0.24,
                       fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          const ImagePlaceholderLoading(),
                       imageUrl:
                           'https://play-lh.googleusercontent.com/QvTfA5WH0B4X04u_sxSBdb-PlO7Wj6yjeyJVzwoyUsefJPTXDE75QBKKJr1fyI5CHQq9',
                     ),
