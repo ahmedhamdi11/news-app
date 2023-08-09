@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CustomAnimatedloading extends StatefulWidget {
-  const CustomAnimatedloading({super.key, required this.child});
+class CustomShimmer extends StatefulWidget {
+  const CustomShimmer({super.key, required this.child});
   final Widget child;
   @override
-  State<CustomAnimatedloading> createState() => _CustomAnimatedloadingState();
+  State<CustomShimmer> createState() => _CustomShimmerState();
 }
 
-class _CustomAnimatedloadingState extends State<CustomAnimatedloading>
+class _CustomShimmerState extends State<CustomShimmer>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

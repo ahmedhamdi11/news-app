@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/providers/home_provider.dart';
 import 'package:news_app/utils/cache_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +26,11 @@ class MyApp extends StatelessWidget {
           create: (context) {
             //Notify about theme changes
             return ThemeProvider()..getThemeFromPrefs();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            return HomeProvider();
           },
         ),
       ],
