@@ -9,11 +9,7 @@ class ArticlesListViewShimmer extends StatelessWidget {
     return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) => const CustomShimmer(
-<<<<<<< HEAD
         child: ArticlesShimmerItme(),
-=======
-        child: ArticlesLoadingItme(),
->>>>>>> 0a3e8377af1bf814440d675dcd4dac2dbbab87c3
       ),
     );
   }
