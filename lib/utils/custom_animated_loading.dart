@@ -14,8 +14,8 @@ class _CustomAnimatedloadingState extends State<CustomAnimatedloading>
 
   @override
   void initState() {
-    _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 800));
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
     _animation = Tween<double>(begin: 0.2, end: 1).animate(
       CurvedAnimation(

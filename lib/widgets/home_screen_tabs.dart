@@ -14,7 +14,7 @@ class _HomeScreenTabsState extends State<HomeScreenTabs> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 45.0,
+      height: 48.0,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
@@ -63,7 +63,8 @@ class TabWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 150),
+          curve: Curves.linear,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 fontSize: isSelected ? 20.0 : 14.0,
                 fontWeight: FontWeight.w500,
