@@ -8,14 +8,17 @@ class AllNewsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        PaginationControl(),
-        SizedBox(height: 16.0),
-        SortByDropMenu(),
-        SizedBox(height: 16.0),
-        Expanded(child: ArticlesListView()),
-      ],
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.0),
+      child: Column(
+        children: [
+          PaginationControl(),
+          SizedBox(height: 16.0),
+          SortByDropMenu(),
+          SizedBox(height: 16.0),
+          Expanded(child: ArticlesListView()),
+        ],
+      ),
     );
   }
 }

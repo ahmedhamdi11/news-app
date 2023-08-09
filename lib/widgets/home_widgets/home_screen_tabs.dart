@@ -9,23 +9,26 @@ class HomeScreenTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeProvider homeProvider = Provider.of<HomeProvider>(context);
-    return SizedBox(
-      height: 48.0,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          TabWidget(
-            text: 'All news',
-            isSelected: homeProvider.newsType == NewsType.allNews,
-            onTap: () => homeProvider.changeNewsTypeToAllNews(),
-          ),
-          const SizedBox(width: 16.0),
-          TabWidget(
-            text: 'Top trending',
-            isSelected: homeProvider.newsType == NewsType.topTrending,
-            onTap: () => homeProvider.changeNewsTypeToTopTrending(),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: SizedBox(
+        height: 48.0,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            TabWidget(
+              text: 'All news',
+              isSelected: homeProvider.newsType == NewsType.allNews,
+              onTap: () => homeProvider.changeNewsTypeToAllNews(),
+            ),
+            const SizedBox(width: 16.0),
+            TabWidget(
+              text: 'Top trending',
+              isSelected: homeProvider.newsType == NewsType.topTrending,
+              onTap: () => homeProvider.changeNewsTypeToTopTrending(),
+            ),
+          ],
+        ),
       ),
     );
   }

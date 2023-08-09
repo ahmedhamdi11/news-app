@@ -12,21 +12,16 @@ class HomeScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NewsType newsType = Provider.of<HomeProvider>(context).newsType;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Column(
-        children: [
-          const HomeScreenTabs(),
-          const SizedBox(
-            height: 16.0,
-          ),
-          Expanded(
-            child: newsType == NewsType.allNews
-                ? const AllNewsView()
-                : const TopTrendingView(),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        const HomeScreenTabs(),
+        const SizedBox(
+          height: 16.0,
+        ),
+        newsType == NewsType.allNews
+            ? const Expanded(child: AllNewsView())
+            : const TopTrendingView(),
+      ],
     );
   }
 }
