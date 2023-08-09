@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/custom_animated_loading.dart';
+import 'package:news_app/utils/custom_shimmer.dart';
 
-class ArticlesListViewLoading extends StatelessWidget {
-  const ArticlesListViewLoading({super.key});
+class ArticlesListViewShimmer extends StatelessWidget {
+  const ArticlesListViewShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: 5,
-      itemBuilder: (context, index) => const CustomAnimatedloading(
-        child: ArticlesLoadingItme(),
+      itemBuilder: (context, index) => const CustomShimmer(
+        child: ArticlesShimmerItme(),
       ),
     );
   }
 }
 
-class ArticlesLoadingItme extends StatelessWidget {
-  const ArticlesLoadingItme({
+class ArticlesShimmerItme extends StatelessWidget {
+  const ArticlesShimmerItme({
     super.key,
   });
 

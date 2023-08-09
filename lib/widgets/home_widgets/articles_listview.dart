@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/widgets/articles_item.dart';
+import 'package:news_app/widgets/home_widgets/articles_item.dart';
 
 class ArticlesListView extends StatelessWidget {
   const ArticlesListView({super.key});

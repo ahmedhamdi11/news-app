@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/constents/enums.dart';
+import 'package:news_app/providers/home_provider.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreenTabs extends StatefulWidget {
+class HomeScreenTabs extends StatelessWidget {
   const HomeScreenTabs({super.key});
 
   @override
-  State<HomeScreenTabs> createState() => _HomeScreenTabsState();
-}
-
-class _HomeScreenTabsState extends State<HomeScreenTabs> {
-  NewsType newsType = NewsType.allNews;
-
-  @override
   Widget build(BuildContext context) {
+    HomeProvider homeProvider = Provider.of<HomeProvider>(context);
     return SizedBox(
       height: 48.0,
       child: ListView(
@@ -20,20 +16,14 @@ class _HomeScreenTabsState extends State<HomeScreenTabs> {
         children: [
           TabWidget(
             text: 'All news',
-            isSelected: newsType == NewsType.allNews,
-            onTap: () {
-              newsType = NewsType.allNews;
-              setState(() {});
-            },
+            isSelected: homeProvider.newsType == NewsType.allNews,
+            onTap: () => homeProvider.changeNewsTypeToAllNews(),
           ),
           const SizedBox(width: 16.0),
           TabWidget(
             text: 'Top trending',
-            isSelected: newsType == NewsType.topTrending,
-            onTap: () {
-              newsType = NewsType.topTrending;
-              setState(() {});
-            },
+            isSelected: homeProvider.newsType == NewsType.topTrending,
+            onTap: () => homeProvider.changeNewsTypeToTopTrending(),
           ),
         ],
       ),
