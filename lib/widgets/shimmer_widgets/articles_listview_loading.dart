@@ -6,10 +6,13 @@ class ArticlesListViewShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) => const CustomShimmer(
-        child: ArticlesShimmerItme(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) => const CustomShimmer(
+          child: ArticlesShimmerItme(),
+        ),
       ),
     );
   }

@@ -17,10 +17,10 @@ class _CustomShimmerState extends State<CustomShimmer>
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
-    _animation = Tween<double>(begin: 0.2, end: 1).animate(
+    _animation = Tween<double>(begin: 0.3, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Curves.easeIn,
+        curve: Curves.linear,
       ),
     );
     _controller.repeat(reverse: true);
