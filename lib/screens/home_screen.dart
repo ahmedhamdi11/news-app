@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             onPressed: () => Navigator.of(context).push(
               CustomPageRouteTransition(
                 page: const SearchScreen(),
-                transitionType: TransitionTypeEnum.fade,
+                transitionType: TransitionTypeEnum.rtlWithFade,
               ),
             ),
             icon: const Icon(IconlyBroken.search),
