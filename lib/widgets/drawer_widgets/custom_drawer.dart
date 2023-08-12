@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:news_app/screens/bookmarks_screen.dart';
+import 'package:news_app/utils/cusom_page_route_tranition.dart';
 import 'package:news_app/widgets/drawer_widgets/drawer_list_tile.dart';
 import 'package:news_app/widgets/drawer_widgets/toggle_theme_switch.dart';
 
@@ -37,15 +39,22 @@ class CustomDrawer extends StatelessWidget {
             ),
 
             // home tile
-            const DrawerListTile(
-              title: Text('Home'),
+            DrawerListTile(
+              title: const Text('Home'),
               leadingIcon: IconlyBroken.home,
+              onTap: () => Navigator.of(context).pop(),
             ),
 
             // bookmarks tile
-            const DrawerListTile(
-              title: Text('Bookmarks'),
+            DrawerListTile(
+              title: const Text('Bookmarks'),
               leadingIcon: IconlyBroken.bookmark,
+              onTap: () => Navigator.of(context).push(
+                CustomPageRouteTransition(
+                  page: const BookmarksScreen(),
+                  transitionType: TransitionTypeEnum.fade,
+                ),
+              ),
             ),
 
             const Divider(endIndent: 8.0, indent: 8.0),
