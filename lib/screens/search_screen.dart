@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/widgets/search_widgets/custom_search_bar.dart';
+import 'package:news_app/widgets/search_widgets/search_suggestions.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -14,6 +15,7 @@ class SearchScreen extends StatelessWidget {
             children: [
               SizedBox(height: 8.0),
               CustomSearchBar(),
+              SearchSuggestions(),
             ],
           ),
         ),
