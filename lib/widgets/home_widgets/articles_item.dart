@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/webview_screen.dart';
+import 'package:news_app/utils/cusom_page_route_tranition.dart';
 import 'package:news_app/widgets/shimmer_widgets/image_placeholder_shimmer.dart';
 
 class ArticleItme extends StatelessWidget {
@@ -72,7 +74,11 @@ class ArticleItme extends StatelessWidget {
                           child: Row(
                             children: [
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () => Navigator.of(context).push(
+                                  CustomPageRouteTransition(
+                                    page: const WebviewScreen(),
+                                  ),
+                                ),
                                 icon: const Icon(
                                   Icons.link,
                                   color: Colors.blue,
