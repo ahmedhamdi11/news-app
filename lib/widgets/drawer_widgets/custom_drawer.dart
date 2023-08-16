@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:news_app/screens/bookmarks_screen.dart';
 import 'package:news_app/utils/cusom_page_route_tranition.dart';
-import 'package:news_app/widgets/drawer_widgets/drawer_list_tile.dart';
+import 'package:news_app/widgets/my_list_tile.dart';
 import 'package:news_app/widgets/drawer_widgets/toggle_theme_switch.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -39,14 +39,14 @@ class CustomDrawer extends StatelessWidget {
             ),
 
             // home tile
-            DrawerListTile(
+            MyListTile(
               title: const Text('Home'),
               leadingIcon: IconlyBroken.home,
               onTap: () => Navigator.of(context).pop(),
             ),
 
             // bookmarks tile
-            DrawerListTile(
+            MyListTile(
               title: const Text('Bookmarks'),
               leadingIcon: IconlyBroken.bookmark,
               onTap: () => Navigator.of(context).push(

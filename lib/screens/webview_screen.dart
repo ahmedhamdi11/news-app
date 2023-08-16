@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:news_app/widgets/webview_widgets/custom_bottom_sheet.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebviewScreen extends StatefulWidget {
@@ -59,7 +60,7 @@ class _WebviewScreenState extends State<WebviewScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () => _showModalSheet(),
               icon: const Icon(IconlyBroken.more_square),
             ),
           ],
@@ -77,6 +78,18 @@ class _WebviewScreenState extends State<WebviewScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  _showModalSheet() {
+    showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(18.0)),
+      ),
+      context: context,
+      builder: (context) => CustomBottomSheet(
+        controller: _controller,
       ),
     );
   }

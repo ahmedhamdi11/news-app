@@ -26,6 +26,16 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    configurations.all {
+    resolutionStrategy {
+        eachDependency {
+            if ((requested.group == "org.jetbrains.kotlin") && (requested.name.startsWith("kotlin-stdlib"))) {
+                useVersion("1.8.0")
+            }
+        }
+    }
+}
+
     namespace "com.example.news_app"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
