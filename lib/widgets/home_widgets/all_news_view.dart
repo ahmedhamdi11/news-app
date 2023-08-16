@@ -12,7 +12,7 @@ class AllNewsView extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12.0),
       child: Column(
         children: [
-          PaginationControl(),
+          PaginationController(),
           SizedBox(height: 16.0),
           SortByDropMenu(),
           SizedBox(height: 16.0),
