@@ -9,7 +9,7 @@ class ArticlesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimationLimiter(
       child: ListView.builder(
-        itemCount: 20,
+        itemCount: 1,
         itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
           position: index,
           delay: const Duration(milliseconds: 100),

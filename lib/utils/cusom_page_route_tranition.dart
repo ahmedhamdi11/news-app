@@ -4,12 +4,15 @@ class CustomPageRouteTransition extends PageRouteBuilder {
   final Widget page;
   final TransitionTypeEnum transitionType;
   final Duration duration;
+  final Duration reverseDuratin;
   CustomPageRouteTransition({
     required this.page,
     this.transitionType = TransitionTypeEnum.rtlWithFade,
     this.duration = const Duration(milliseconds: 300),
+    this.reverseDuratin = const Duration(milliseconds: 300),
   }) : super(
           transitionDuration: duration,
+          reverseTransitionDuration: reverseDuratin,
           pageBuilder: (context, animation, secondAnimation) => page,
           transitionsBuilder: (context, animation, secondAnimation, child) {
             switch (transitionType) {
