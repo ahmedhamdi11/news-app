@@ -17,20 +17,8 @@ class CustomPageRouteTransition extends PageRouteBuilder {
           transitionsBuilder: (context, animation, secondAnimation, child) {
             switch (transitionType) {
               case TransitionTypeEnum.fade:
-                final fadeAnimation =
-                    Tween<double>(begin: 0, end: 1).animate(animation);
                 return FadeTransition(
-                  opacity: fadeAnimation,
-                  child: child,
-                );
-
-              case TransitionTypeEnum.rtl:
-                const begin = Offset(1, 0);
-                const end = Offset.zero;
-                final slidAnimation =
-                    Tween<Offset>(begin: begin, end: end).animate(animation);
-                return SlideTransition(
-                  position: slidAnimation,
+                  opacity: animation,
                   child: child,
                 );
 
@@ -39,10 +27,8 @@ class CustomPageRouteTransition extends PageRouteBuilder {
                 const end = Offset.zero;
                 final slidAnimation =
                     Tween<Offset>(begin: begin, end: end).animate(animation);
-                final fadeAnimation =
-                    Tween<double>(begin: 0, end: 1).animate(animation);
                 return FadeTransition(
-                  opacity: fadeAnimation,
+                  opacity: animation,
                   child: SlideTransition(
                     position: slidAnimation,
                     child: child,
@@ -55,6 +41,5 @@ class CustomPageRouteTransition extends PageRouteBuilder {
 
 enum TransitionTypeEnum {
   fade,
-  rtl,
   rtlWithFade,
 }

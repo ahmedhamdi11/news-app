@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/blog_details_screen.dart';
+import 'package:news_app/screens/webview_screen.dart';
+import 'package:news_app/utils/cusom_page_route_tranition.dart';
 import 'package:news_app/widgets/shimmer_widgets/image_placeholder_shimmer.dart';
 
 class TopTrendingArticleItem extends StatelessWidget {
@@ -16,7 +19,12 @@ class TopTrendingArticleItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(8.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(8.0),
-        onTap: () {},
+        onTap: () => Navigator.of(context).push(
+          CustomPageRouteTransition(
+            page: const BlogDetailsScreen(),
+            transitionType: TransitionTypeEnum.fade,
+          ),
+        ),
         child: Column(
           children: [
             ClipRRect(
@@ -46,7 +54,11 @@ class TopTrendingArticleItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).push(
+                    CustomPageRouteTransition(
+                      page: const WebviewScreen(),
+                    ),
+                  ),
                   icon: const Icon(
                     Icons.link,
                     color: Colors.blue,

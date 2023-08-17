@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:news_app/utils/custom_shimmer.dart';
 import 'package:news_app/widgets/webview_widgets/custom_bottom_sheet.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -18,13 +19,14 @@ class _WebviewScreenState extends State<WebviewScreen> {
   void initState() {
     _controller = WebViewController()
       ..enableZoom(true)
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (progress) {
-            setState(() {
-              loadingProgress = progress / 100;
-            });
+            if (mounted) {
+              setState(() {
+                loadingProgress = progress / 100;
+              });
+            }
           },
         ),
       )
@@ -33,12 +35,8 @@ class _WebviewScreenState extends State<WebviewScreen> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () async {
         if (await _controller.canGoBack()) {
@@ -67,15 +65,28 @@ class _WebviewScreenState extends State<WebviewScreen> {
         ),
         body: Column(
           children: [
+            // loading progress indicator
             if (loadingProgress != 1)
               LinearProgressIndicator(
                 value: loadingProgress,
               ),
-            Expanded(
-              child: WebViewWidget(
-                controller: _controller,
-              ),
-            ),
+
+            // body (web view)
+            loadingProgress == 1
+                ? Expanded(
+                    child: WebViewWidget(
+                      controller: _controller,
+                    ),
+                  )
+                : Expanded(
+                    child: CustomShimmer(
+                      child: Container(
+                        width: size.width,
+                        height: size.height,
+                        color: Theme.of(context).hintColor,
+                      ),
+                    ),
+                  ),
           ],
         ),
       ),

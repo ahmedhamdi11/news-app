@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/screens/home_screen.dart';
 import 'package:news_app/utils/cusom_page_route_tranition.dart';
 
@@ -77,11 +78,11 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           child: _isRectangle
               ? Center(
-                  child: const Text(
+                  child: Text(
                     'News App',
-                    style: TextStyle(
+                    style: GoogleFonts.lobster(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),
                   ).animate(

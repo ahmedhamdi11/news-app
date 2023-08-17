@@ -9,19 +9,19 @@ class ArticlesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimationLimiter(
       child: ListView.builder(
-        itemCount: 1,
+        itemCount: 20,
         itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
           position: index,
-          delay: const Duration(milliseconds: 100),
+          delay: const Duration(milliseconds: 150),
           child: const SlideAnimation(
             duration: Duration(milliseconds: 1500),
             curve: Curves.fastLinearToSlowEaseIn,
-            horizontalOffset: 40,
-            verticalOffset: 150.0,
-            child: FlipAnimation(
-              duration: Duration(milliseconds: 2500),
+            horizontalOffset: 90,
+            verticalOffset: 120.0,
+            child: FadeInAnimation(
+              duration: Duration(seconds: 3),
               curve: Curves.fastLinearToSlowEaseIn,
-              flipAxis: FlipAxis.y,
+              //flipAxis: FlipAxis.y,
               child: ArticleItme(),
             ),
           ),

@@ -13,16 +13,15 @@ class BookmarksListView extends StatelessWidget {
         itemCount: 20,
         itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
           position: index,
-          delay: const Duration(milliseconds: 100),
+          delay: const Duration(milliseconds: 150),
           child: const SlideAnimation(
             duration: Duration(milliseconds: 1500),
             curve: Curves.fastLinearToSlowEaseIn,
-            horizontalOffset: 40.0,
-            verticalOffset: 150.0,
-            child: FlipAnimation(
-              duration: Duration(milliseconds: 2500),
+            horizontalOffset: 90.0,
+            verticalOffset: 120.0,
+            child: FadeInAnimation(
+              duration: Duration(seconds: 3),
               curve: Curves.fastLinearToSlowEaseIn,
-              flipAxis: FlipAxis.y,
               child: ArticleItme(),
             ),
           ),
