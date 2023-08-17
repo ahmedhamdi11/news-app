@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:news_app/constents/theme_data.dart';
 import 'package:news_app/providers/home_provider.dart';
+import 'package:news_app/providers/theme_provider.dart';
+import 'package:news_app/screens/splash_screen.dart';
 import 'package:news_app/utils/cache_helper.dart';
 import 'package:provider/provider.dart';
-
-import 'screens/home_screen.dart';
-
-import 'constents/theme_data.dart';
-
-import 'providers/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +44,7 @@ class MyApp extends StatelessWidget {
             darkTheme: darkTheme,
             themeMode:
                 themeProvider.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            home: const HomeScreen(),
+            home: const SplashScreen(),
           );
         },
       ),
