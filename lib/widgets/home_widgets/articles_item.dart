@@ -7,8 +7,9 @@ import 'package:news_app/utils/cusom_page_route_tranition.dart';
 import 'package:news_app/widgets/shimmer_widgets/image_placeholder_shimmer.dart';
 
 class ArticleItme extends StatelessWidget {
-  const ArticleItme({super.key, required this.news});
+  const ArticleItme({super.key, required this.news, required this.index});
   final NewsModel news;
+  final int index;
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -18,7 +19,9 @@ class ArticleItme extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           CustomPageRouteTransition(
-            page: const BlogDetailsScreen(),
+            page: BlogDetailsScreen(
+              news: news,
+            ),
             transitionType: TransitionTypeEnum.fade,
             duration: const Duration(milliseconds: 450),
             reverseDuratin: const Duration(milliseconds: 400),
@@ -50,19 +53,22 @@ class ArticleItme extends StatelessWidget {
                 child: Row(
                   children: [
                     // article image
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12.0),
-                      child: CachedNetworkImage(
-                        width: w * 0.24,
-                        height: w * 0.24,
-                        fit: BoxFit.cover,
-                        errorWidget: (context, url, error) => Image.asset(
-                          'assets/images/empty_image.jpg',
+                    Hero(
+                      tag: news.title + news.url,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: CachedNetworkImage(
+                          width: w * 0.24,
+                          height: w * 0.24,
                           fit: BoxFit.cover,
+                          errorWidget: (context, url, error) => Image.asset(
+                            'assets/images/empty_image.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                          placeholder: (context, url) =>
+                              const ImagePlaceholderShimmer(),
+                          imageUrl: news.urlToImage,
                         ),
-                        placeholder: (context, url) =>
-                            const ImagePlaceholderShimmer(),
-                        imageUrl: news.urlToImage,
                       ),
                     ),
                     const SizedBox(

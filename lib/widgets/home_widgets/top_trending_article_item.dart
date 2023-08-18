@@ -19,12 +19,12 @@ class TopTrendingArticleItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(8.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(8.0),
-        onTap: () => Navigator.of(context).push(
-          CustomPageRouteTransition(
-            page: const BlogDetailsScreen(),
-            transitionType: TransitionTypeEnum.fade,
-          ),
-        ),
+        // onTap: () => Navigator.of(context).push(
+        //   CustomPageRouteTransition(
+        //     page: const BlogDetailsScreen(),
+        //     transitionType: TransitionTypeEnum.fade,
+        //   ),
+        // ),
         child: Column(
           children: [
             ClipRRect(
