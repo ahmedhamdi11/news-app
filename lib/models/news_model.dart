@@ -42,11 +42,11 @@ class NewsModel {
       sourcName: jsonData['source']['name'] ?? '',
       authorName: jsonData['author'] ?? '',
       title: jsonData['title'] ?? '',
-      description: jsonData['description'] ?? '',
+      description: jsonData['description'] ?? 'No description found',
       url: jsonData['url'] ?? '',
       urlToImage: jsonData['urlToImage'] ?? '',
       publishedAt: publishedAt,
-      content: jsonData['content'] ?? '',
+      content: jsonData['content'] ?? 'No content found',
       timeAgo: timeAgo,
     );
   }

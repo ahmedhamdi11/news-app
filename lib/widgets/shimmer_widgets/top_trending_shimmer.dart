@@ -10,14 +10,21 @@ class TopTrendingShimmer extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 
-    return SizedBox(
-      height: h * 0.54,
-      child: Swiper(
-        itemWidth: w * 0.9,
-        layout: SwiperLayout.STACK,
-        itemCount: 1,
-        itemBuilder: (context, index) => const TopTrendingShimmerItem(),
-      ),
+    return ListView(
+      children: [
+        const SizedBox(
+          height: 16.0,
+        ),
+        SizedBox(
+          height: h * 0.54,
+          child: Swiper(
+            itemWidth: w * 0.9,
+            layout: SwiperLayout.STACK,
+            itemCount: 1,
+            itemBuilder: (context, index) => const TopTrendingShimmerItem(),
+          ),
+        ),
+      ],
     );
   }
 }

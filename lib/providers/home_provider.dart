@@ -10,9 +10,12 @@ class HomeProvider extends ChangeNotifier {
   NewsType newsType = NewsType.allNews;
   String sortBy = SortByEnum.popularity.name;
   List<NewsModel> allNewsData = [];
-  late ApiStatsEnum apiStatsEnum;
+  List<NewsModel> topTrendingData = [];
+  late ApiStatsEnum fetchAllNewsState;
+  late ApiStatsEnum fetchTopTrendingState;
   ApiServices apiServices = ApiServices();
-  String errMessage = '';
+  String allNewsErrMessage = '';
+  String topTrendingErrMessage = '';
 
   changeNewsTypeToAllNews() {
     newsType = NewsType.allNews;
@@ -30,8 +33,8 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getAllNews({String pageNumber = '1'}) async {
-    apiStatsEnum = ApiStatsEnum.loading;
+  Future<void> getAllNews({String pageNumber = '1'}) async {
+    fetchAllNewsState = ApiStatsEnum.loading;
     allNewsData = [];
     notifyListeners();
     try {
@@ -49,17 +52,46 @@ class HomeProvider extends ChangeNotifier {
       for (var item in response.data['articles']) {
         allNewsData.add(NewsModel.fromJson(item));
       }
-      apiStatsEnum = ApiStatsEnum.success;
+      fetchAllNewsState = ApiStatsEnum.success;
       notifyListeners();
     } catch (e) {
       if (e is DioException) {
         Failures failures = ServerFailure.fromDioError(e);
-        errMessage = failures.errMessage;
-        apiStatsEnum = ApiStatsEnum.failure;
+        allNewsErrMessage = failures.errMessage;
+        fetchAllNewsState = ApiStatsEnum.failure;
         notifyListeners();
       } else {
-        errMessage = e.toString();
-        apiStatsEnum = ApiStatsEnum.failure;
+        allNewsErrMessage = e.toString();
+        fetchAllNewsState = ApiStatsEnum.failure;
+        notifyListeners();
+      }
+    }
+  }
+
+  Future<void> getTopTrending() async {
+    fetchTopTrendingState = ApiStatsEnum.loading;
+    topTrendingData = [];
+    notifyListeners();
+    try {
+      Response response = await apiServices.get(
+        endPoint: 'top-headlines?category=general&pageSize=20',
+        headers: {'X-Api-Key': kApiKey},
+      );
+
+      for (var item in response.data['articles']) {
+        topTrendingData.add(NewsModel.fromJson(item));
+      }
+      fetchTopTrendingState = ApiStatsEnum.success;
+      notifyListeners();
+    } catch (e) {
+      if (e is DioException) {
+        Failures failures = ServerFailure.fromDioError(e);
+        topTrendingErrMessage = failures.errMessage;
+        fetchTopTrendingState = ApiStatsEnum.failure;
+        notifyListeners();
+      } else {
+        topTrendingErrMessage = e.toString();
+        fetchTopTrendingState = ApiStatsEnum.failure;
         notifyListeners();
       }
     }

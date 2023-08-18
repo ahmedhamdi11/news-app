@@ -35,14 +35,14 @@ class AllNewsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeProvider homeProvider = Provider.of<HomeProvider>(context);
 
-    switch (homeProvider.apiStatsEnum) {
+    switch (homeProvider.fetchAllNewsState) {
       case ApiStatsEnum.loading:
         return const AllNewsShimmer();
 
       case ApiStatsEnum.failure:
         return ErrorViewWidget(
-          onBottonPressed: () => homeProvider.getAllNews(),
-          errMessage: homeProvider.errMessage,
+          onButtonPressed: () => homeProvider.getAllNews(),
+          errMessage: homeProvider.allNewsErrMessage,
         );
 
       case ApiStatsEnum.success:

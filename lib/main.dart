@@ -29,7 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) {
-            return HomeProvider()..getAllNews();
+            return HomeProvider()
+              ..getAllNews()
+              ..getTopTrending();
           },
         ),
       ],

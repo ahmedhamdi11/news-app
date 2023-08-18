@@ -8,10 +8,10 @@ class ErrorViewWidget extends StatelessWidget {
   const ErrorViewWidget({
     super.key,
     required this.errMessage,
-    this.onBottonPressed,
+    this.onButtonPressed,
   });
   final String errMessage;
-  final void Function()? onBottonPressed;
+  final void Function()? onButtonPressed;
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -49,7 +49,7 @@ class ErrorViewWidget extends StatelessWidget {
             style: TextButton.styleFrom(
               backgroundColor: Theme.of(context).cardColor,
             ),
-            onPressed: onBottonPressed,
+            onPressed: onButtonPressed,
             child: const Text(
               'Try again',
               style: TextStyle(
