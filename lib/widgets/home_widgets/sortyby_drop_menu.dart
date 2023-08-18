@@ -12,15 +12,15 @@ class SortByDropMenu extends StatelessWidget {
     List<DropdownMenuItem<dynamic>>? items = [
       DropdownMenuItem(
         value: SortByEnum.popularity.name,
-        child: Text(SortByEnum.popularity.name),
+        child: const Text('Popularity'),
       ),
       DropdownMenuItem(
         value: SortByEnum.publishedAt.name,
-        child: Text(SortByEnum.publishedAt.name),
+        child: const Text('Newest'),
       ),
       DropdownMenuItem(
         value: SortByEnum.relevancy.name,
-        child: Text(SortByEnum.relevancy.name),
+        child: const Text('Relevancy'),
       ),
     ];
     return Align(

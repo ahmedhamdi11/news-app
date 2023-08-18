@@ -7,9 +7,11 @@ class ApiServices {
   Future<Response> get({
     required String endPoint,
     Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParameters,
   }) async {
     Response response = await dio.get(
       '$kBaseUrl$endPoint',
+      queryParameters: queryParameters,
       options: Options(
         headers: headers,
       ),

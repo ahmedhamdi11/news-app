@@ -26,6 +26,7 @@ class HomeProvider extends ChangeNotifier {
 
   void sortByOnChanged(String value) {
     sortBy = value;
+    getAllNews();
     notifyListeners();
   }
 
@@ -35,8 +36,14 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
     try {
       Response response = await apiServices.get(
-        endPoint:
-            'everything?q=technology&language=en&page=$pageNumber&pageSize=10',
+        endPoint: 'everything?',
+        queryParameters: {
+          'q': 'technology',
+          'language': 'en',
+          'pageSize': '10',
+          'page': pageNumber,
+          'sortBy': sortBy,
+        },
         headers: {'X-Api-Key': kApiKey},
       );
       for (var item in response.data['articles']) {

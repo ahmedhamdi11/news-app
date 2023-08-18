@@ -6,21 +6,16 @@ class AllNewsShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: CustomShimmer(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) => const ArticlesShimmerItme(),
-              ),
+    return CustomShimmer(
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) => const ArticlesShimmerItme(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
