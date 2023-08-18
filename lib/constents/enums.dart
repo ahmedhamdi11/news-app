@@ -8,3 +8,9 @@ enum SortByEnum {
   popularity,
   publishedAt,
 }
+
+enum ApiStatsEnum {
+  loading,
+  success,
+  failure,
+}

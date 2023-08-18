@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/models/news_model.dart';
 import 'package:news_app/screens/blog_details_screen.dart';
 import 'package:news_app/screens/webview_screen.dart';
 import 'package:news_app/utils/cusom_page_route_tranition.dart';
 import 'package:news_app/widgets/shimmer_widgets/image_placeholder_shimmer.dart';
 
 class ArticleItme extends StatelessWidget {
-  const ArticleItme({super.key});
+  const ArticleItme({super.key, required this.news});
+  final NewsModel news;
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -54,10 +56,13 @@ class ArticleItme extends StatelessWidget {
                         width: w * 0.24,
                         height: w * 0.24,
                         fit: BoxFit.cover,
+                        errorWidget: (context, url, error) => Image.asset(
+                          'assets/images/empty_image.jpg',
+                          fit: BoxFit.cover,
+                        ),
                         placeholder: (context, url) =>
                             const ImagePlaceholderShimmer(),
-                        imageUrl:
-                            'https://play-lh.googleusercontent.com/QvTfA5WH0B4X04u_sxSBdb-PlO7Wj6yjeyJVzwoyUsefJPTXDE75QBKKJr1fyI5CHQq9',
+                        imageUrl: news.urlToImage,
                       ),
                     ),
                     const SizedBox(
@@ -68,35 +73,42 @@ class ArticleItme extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            'title ' * 20,
-                            textAlign: TextAlign.justify,
+                            news.title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(
                             height: 4.0,
                           ),
-                          const Align(
+                          Align(
                             alignment: Alignment.centerRight,
-                            child: Text('🕑 Reading Time'),
+                            child: Text('🕑 ${news.readingTimeText}'),
                           ),
-                          FittedBox(
-                            child: Row(
-                              children: [
-                                IconButton(
-                                  onPressed: () => Navigator.of(context).push(
-                                    CustomPageRouteTransition(
-                                      page: const WebviewScreen(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                onPressed: () => Navigator.of(context).push(
+                                  CustomPageRouteTransition(
+                                    page: WebviewScreen(
+                                      url: news.url,
                                     ),
                                   ),
-                                  icon: const Icon(
-                                    Icons.link,
-                                    color: Colors.blue,
-                                  ),
                                 ),
-                                Text('8-8-2023' * 4),
-                              ],
-                            ),
+                                icon: const Icon(
+                                  Icons.link,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              SizedBox(
+                                width: w * 0.4,
+                                child: Text(
+                                  news.publishedAt,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
                           )
                         ],
                       ),

@@ -56,7 +56,9 @@ class TopTrendingArticleItem extends StatelessWidget {
                 IconButton(
                   onPressed: () => Navigator.of(context).push(
                     CustomPageRouteTransition(
-                      page: const WebviewScreen(),
+                      page: const WebviewScreen(
+                        url: 'https://flutter.dev',
+                      ),
                     ),
                   ),
                   icon: const Icon(

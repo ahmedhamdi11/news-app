@@ -5,8 +5,8 @@ import 'package:news_app/widgets/webview_widgets/custom_bottom_sheet.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebviewScreen extends StatefulWidget {
-  const WebviewScreen({super.key});
-
+  const WebviewScreen({super.key, required this.url});
+  final String url;
   @override
   State<WebviewScreen> createState() => _WebviewScreenState();
 }
@@ -30,7 +30,7 @@ class _WebviewScreenState extends State<WebviewScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://flutter.dev'));
+      ..loadRequest(Uri.parse(widget.url));
     super.initState();
   }
 
@@ -48,8 +48,15 @@ class _WebviewScreenState extends State<WebviewScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'url',
+          title: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Text(
+              widget.url,
+            ),
           ),
           centerTitle: true,
           leading: IconButton(

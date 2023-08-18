@@ -1,17 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/utils/custom_shimmer.dart';
 
-class ArticlesListViewShimmer extends StatelessWidget {
-  const ArticlesListViewShimmer({super.key});
+class AllNewsShimmer extends StatelessWidget {
+  const AllNewsShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double w = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) => const CustomShimmer(
-          child: ArticlesShimmerItme(),
+      child: CustomShimmer(
+        child: Column(
+          children: [
+            Container(
+              height: 40,
+              width: w - 24.0,
+              decoration: BoxDecoration(
+                color: Theme.of(context).hintColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                height: 50,
+                width: w * 0.35,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).hintColor,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 18.0,
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) => const ArticlesShimmerItme(),
+              ),
+            ),
+          ],
         ),
       ),
     );

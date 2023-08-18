@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) {
-            return HomeProvider();
+            return HomeProvider()..getAllNews();
           },
         ),
       ],

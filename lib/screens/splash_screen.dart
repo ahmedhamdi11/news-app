@@ -35,13 +35,12 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 
     Timer(const Duration(milliseconds: 5000), () {
-      Navigator.of(context).pushAndRemoveUntil(
+      Navigator.of(context).pushReplacement(
         CustomPageRouteTransition(
           page: const HomeScreen(),
           transitionType: TransitionTypeEnum.fade,
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 600),
         ),
-        (route) => false,
       );
     });
 
@@ -58,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
         curve: Curves.elasticOut,
         duration: const Duration(milliseconds: 3000),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 1600),
+          duration: const Duration(milliseconds: 1800),
           curve: Curves.fastLinearToSlowEaseIn,
           width: _isExpanded
               ? w
@@ -72,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   : 20,
           decoration: BoxDecoration(
             color: _isExpanded
-                ? Theme.of(context).colorScheme.secondary.withOpacity(0.1)
+                ? Colors.transparent
                 : Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(28.0),
           ),
