@@ -29,25 +29,21 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getAllNews() async {
+  Future getAllNews({String pageNumber = '1'}) async {
     apiStatsEnum = ApiStatsEnum.loading;
+    allNewsData = [];
     notifyListeners();
     try {
       Response response = await apiServices.get(
-        endPoint: 'everything?q=technology&language=en&pageSize=10',
+        endPoint:
+            'everything?q=technology&language=en&page=$pageNumber&pageSize=10',
         headers: {'X-Api-Key': kApiKey},
       );
-      if (response.data['status'] == 'error') {
-        errMessage = response.data['message'];
-        apiStatsEnum = ApiStatsEnum.failure;
-        notifyListeners();
-      } else {
-        for (var item in response.data['articles']) {
-          allNewsData.add(NewsModel.fromJson(item));
-        }
-        apiStatsEnum = ApiStatsEnum.success;
-        notifyListeners();
+      for (var item in response.data['articles']) {
+        allNewsData.add(NewsModel.fromJson(item));
       }
+      apiStatsEnum = ApiStatsEnum.success;
+      notifyListeners();
     } catch (e) {
       if (e is DioException) {
         Failures failures = ServerFailure.fromDioError(e);

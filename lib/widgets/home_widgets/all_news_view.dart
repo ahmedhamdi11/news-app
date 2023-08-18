@@ -13,31 +13,41 @@ class AllNewsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.0),
+      child: Column(
+        children: [
+          PaginationController(),
+          SizedBox(height: 16.0),
+          SortByDropMenu(),
+          SizedBox(height: 16.0),
+          Expanded(child: AllNewsViewBody()),
+        ],
+      ),
+    );
+  }
+}
+
+class AllNewsViewBody extends StatelessWidget {
+  const AllNewsViewBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     HomeProvider homeProvider = Provider.of<HomeProvider>(context);
+
     switch (homeProvider.apiStatsEnum) {
       case ApiStatsEnum.loading:
         return const AllNewsShimmer();
+
       case ApiStatsEnum.failure:
         return ErrorViewWidget(
           onBottonPressed: () => homeProvider.getAllNews(),
           errMessage: homeProvider.errMessage,
         );
+
       case ApiStatsEnum.success:
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Column(
-            children: [
-              const PaginationController(),
-              const SizedBox(height: 16.0),
-              const SortByDropMenu(),
-              const SizedBox(height: 16.0),
-              Expanded(
-                child: ArticlesListView(
-                  allNews: homeProvider.allNewsData,
-                ),
-              ),
-            ],
-          ),
+        return ArticlesListView(
+          allNews: homeProvider.allNewsData,
         );
     }
   }

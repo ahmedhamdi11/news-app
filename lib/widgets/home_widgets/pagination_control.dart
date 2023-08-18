@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/providers/home_provider.dart';
 import 'package:news_app/widgets/home_widgets/page_number_button.dart';
 import 'package:news_app/widgets/home_widgets/pagination_button.dart';
+import 'package:provider/provider.dart';
 
 class PaginationController extends StatefulWidget {
   const PaginationController({super.key});
@@ -13,6 +15,7 @@ class _PaginationControllerState extends State<PaginationController> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    HomeProvider homeProvider = Provider.of<HomeProvider>(context);
     return SizedBox(
       height: 38,
       child: Row(
@@ -20,8 +23,14 @@ class _PaginationControllerState extends State<PaginationController> {
           // go to the previus page
           PaginationButton(
             onPressed: () {
-              currentIndex > 0 ? currentIndex -= 1 : null;
-              setState(() {});
+              if (currentIndex > 0) {
+                setState(() {
+                  currentIndex -= 1;
+                });
+                homeProvider.getAllNews(
+                  pageNumber: (currentIndex + 1).toString(),
+                );
+              }
             },
             text: 'Prev',
           ),
@@ -38,6 +47,9 @@ class _PaginationControllerState extends State<PaginationController> {
                   setState(() {
                     currentIndex = index;
                   });
+                  homeProvider.getAllNews(
+                    pageNumber: (currentIndex + 1).toString(),
+                  );
                 },
               ),
             ),
@@ -46,8 +58,14 @@ class _PaginationControllerState extends State<PaginationController> {
           // go to the next page
           PaginationButton(
             onPressed: () {
-              currentIndex < 4 ? currentIndex += 1 : null;
-              setState(() {});
+              if (currentIndex < 5) {
+                setState(() {
+                  currentIndex += 1;
+                });
+                homeProvider.getAllNews(
+                  pageNumber: (currentIndex + 1).toString(),
+                );
+              }
             },
             text: 'Next',
           ),

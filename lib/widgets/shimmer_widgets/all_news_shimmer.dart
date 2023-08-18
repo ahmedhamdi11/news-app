@@ -13,31 +13,6 @@ class AllNewsShimmer extends StatelessWidget {
       child: CustomShimmer(
         child: Column(
           children: [
-            Container(
-              height: 40,
-              width: w - 24.0,
-              decoration: BoxDecoration(
-                color: Theme.of(context).hintColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            const SizedBox(
-              height: 12.0,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                height: 50,
-                width: w * 0.35,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).hintColor,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 18.0,
-            ),
             Expanded(
               child: ListView.builder(
                 itemCount: 5,
