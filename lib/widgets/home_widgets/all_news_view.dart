@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/constents/enums.dart';
 import 'package:news_app/providers/home_provider.dart';
+import 'package:news_app/widgets/error_view_widget.dart';
 import 'package:news_app/widgets/home_widgets/articles_listview.dart';
 import 'package:news_app/widgets/home_widgets/pagination_control.dart';
 import 'package:news_app/widgets/home_widgets/sortyby_drop_menu.dart';
@@ -17,7 +18,10 @@ class AllNewsView extends StatelessWidget {
       case ApiStatsEnum.loading:
         return const AllNewsShimmer();
       case ApiStatsEnum.failure:
-        return Text(homeProvider.errMessage);
+        return ErrorViewWidget(
+          onBottonPressed: () => homeProvider.getAllNews(),
+          errMessage: homeProvider.errMessage,
+        );
       case ApiStatsEnum.success:
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),

@@ -31,6 +31,7 @@ class HomeProvider extends ChangeNotifier {
 
   Future getAllNews() async {
     apiStatsEnum = ApiStatsEnum.loading;
+    notifyListeners();
     try {
       Response response = await apiServices.get(
         endPoint: 'everything?q=technology&language=en&pageSize=10',
