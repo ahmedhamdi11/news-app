@@ -88,7 +88,7 @@ class ArticleItme extends StatelessWidget {
                           ),
                           Align(
                             alignment: Alignment.centerRight,
-                            child: Text('🕑 ${news.readingTimeText}'),
+                            child: Text('🕑 ${news.timeAgo}'),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,7 +111,9 @@ class ArticleItme extends StatelessWidget {
                                 child: Text(
                                   news.publishedAt,
                                   maxLines: 1,
+                                  textAlign: TextAlign.right,
                                   overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(color: Colors.grey[600]),
                                 ),
                               ),
                             ],

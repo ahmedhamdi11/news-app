@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:news_app/utils/custom_shimmer.dart';
 import 'package:news_app/widgets/webview_widgets/custom_bottom_sheet.dart';
+import 'package:news_app/widgets/webview_widgets/webview_body.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebviewScreen extends StatefulWidget {
@@ -36,7 +36,6 @@ class _WebviewScreenState extends State<WebviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () async {
         if (await _controller.canGoBack()) {
@@ -47,68 +46,55 @@ class _WebviewScreenState extends State<WebviewScreen> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Text(
-              widget.url,
-            ),
-          ),
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(IconlyBroken.arrow_left_2),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () => _showModalSheet(),
-              icon: const Icon(IconlyBroken.more_square),
-            ),
-          ],
-        ),
-        body: Column(
-          children: [
-            // loading progress indicator
-            if (loadingProgress != 1)
-              LinearProgressIndicator(
-                value: loadingProgress,
-              ),
-
-            // body (web view)
-            loadingProgress == 1
-                ? Expanded(
-                    child: WebViewWidget(
-                      controller: _controller,
-                    ),
-                  )
-                : Expanded(
-                    child: CustomShimmer(
-                      child: Container(
-                        width: size.width,
-                        height: size.height,
-                        color: Theme.of(context).hintColor,
-                      ),
-                    ),
-                  ),
-          ],
+        appBar: _buildAppBar(context),
+        body: WebviewBody(
+          loadingProgress: loadingProgress,
+          controller: _controller,
         ),
       ),
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Text(
+          widget.url,
+        ),
+      ),
+      centerTitle: true,
+      leading: IconButton(
+        icon: const Icon(IconlyBroken.arrow_left_2),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () => _showModalSheet(),
+          icon: const Icon(IconlyBroken.more_square),
+        ),
+      ],
     );
   }
 
   _showModalSheet() {
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(18.0)),
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(18.0),
+        ),
       ),
       context: context,
-      builder: (context) => CustomBottomSheet(
-        controller: _controller,
-      ),
+      builder: (context) {
+        return CustomBottomSheet(
+          url: widget.url,
+          controller: _controller,
+        );
+      },
     );
   }
 }

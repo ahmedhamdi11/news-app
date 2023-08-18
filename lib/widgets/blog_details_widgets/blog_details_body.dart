@@ -27,7 +27,7 @@ class BlogDetailsBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(news.publishedAt),
-              const Text('Less than a minute'),
+              Text(news.timeAgo),
             ],
           ),
 

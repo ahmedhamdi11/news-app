@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/functions/show_snackbar.dart';
+import 'package:news_app/utils/functions/launch_url_in_browser.dart';
+import 'package:news_app/utils/functions/share_url.dart';
 import 'package:news_app/widgets/my_list_tile.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({
     super.key,
     required this.controller,
+    required this.url,
   });
   final WebViewController controller;
+  final String url;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,12 +54,12 @@ class CustomBottomSheet extends StatelessWidget {
             leadingIcon: Icons.refresh,
           ),
           MyListTile(
-            onTap: () => _launchUrl(context),
+            onTap: () => launchUrlInBrowser(context, url: url),
             title: const Text('Open in borwser'),
             leadingIcon: Icons.open_in_browser_rounded,
           ),
           MyListTile(
-            onTap: () => _shareUrl(context),
+            onTap: () => shareUrl(context, url: url),
             title: const Text('Share'),
             leadingIcon: Icons.share,
           ),
@@ -70,35 +71,5 @@ class CustomBottomSheet extends StatelessWidget {
   void _reload(BuildContext context) {
     controller.reload();
     Navigator.of(context).pop();
-  }
-
-  Future<void> _launchUrl(BuildContext context) async {
-    try {
-      await launchUrl(
-        Uri.parse('https://flutter.dev'),
-        mode: LaunchMode.externalApplication,
-      );
-    } catch (e) {
-      Navigator.of(context).pop();
-
-      showMySnackBar(
-        context,
-        content: 'Could not launch https://flutter.dev',
-        backgroundColor: Colors.red,
-      );
-    }
-  }
-
-  Future<void> _shareUrl(BuildContext context) async {
-    try {
-      await Share.share('https://flutter.dev');
-    } catch (e) {
-      Navigator.of(context).pop();
-      showMySnackBar(
-        context,
-        content: 'Could not share url',
-        backgroundColor: Colors.red,
-      );
-    }
   }
 }

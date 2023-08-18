@@ -38,6 +38,7 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   google_fonts: ^5.1.0
   iconly: ^1.0.1
+  intl: ^0.18.1
   lottie: ^2.6.0
   provider: ^6.0.5
   share_plus: ^7.1.0

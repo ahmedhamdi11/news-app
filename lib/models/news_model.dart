@@ -1,3 +1,6 @@
+import 'package:intl/intl.dart';
+import 'package:news_app/utils/functions/calc_time_ago.dart';
+
 class NewsModel {
   final String newsId,
       sourcName,
@@ -8,8 +11,7 @@ class NewsModel {
       urlToImage,
       publishedAt,
       content,
-      dateToshow,
-      readingTimeText;
+      timeAgo;
 
   NewsModel({
     required this.newsId,
@@ -21,11 +23,20 @@ class NewsModel {
     required this.urlToImage,
     required this.publishedAt,
     required this.content,
-    required this.dateToshow,
-    required this.readingTimeText,
+    required this.timeAgo,
   });
 
   factory NewsModel.fromJson(Map<String, dynamic> jsonData) {
+    String publishedAt = '';
+    String timeAgo = '';
+    if (jsonData['publishedAt'] != null) {
+      DateTime publishedAtDateTime = DateTime.parse(jsonData['publishedAt']);
+      publishedAt = DateFormat('MMM d, yyyy on h:mm a')
+          .format(publishedAtDateTime)
+          .toString();
+
+      timeAgo = calculateTimeAgo(publishedAtDateTime);
+    }
     return NewsModel(
       newsId: jsonData['source']['id'] ?? '',
       sourcName: jsonData['source']['name'] ?? '',
@@ -34,10 +45,9 @@ class NewsModel {
       description: jsonData['description'] ?? '',
       url: jsonData['url'] ?? '',
       urlToImage: jsonData['urlToImage'] ?? '',
-      publishedAt: jsonData['publishedAt'] ?? '',
+      publishedAt: publishedAt,
       content: jsonData['content'] ?? '',
-      dateToshow: 'dateToshow',
-      readingTimeText: 'readingTimeText',
+      timeAgo: timeAgo,
     );
   }
 }

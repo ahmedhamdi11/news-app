@@ -31,7 +31,7 @@ class TopTrendingArticleItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.0),
               child: CachedNetworkImage(
                 width: w,
-                height: w * 0.9,
+                height: w * 0.86,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => const ImagePlaceholderShimmer(),
                 imageUrl:
@@ -72,6 +72,7 @@ class TopTrendingArticleItem extends StatelessWidget {
                     child: Text(
                       '8-8-2023' * 4,
                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.grey[600]),
                     ),
                   ),
                 ),

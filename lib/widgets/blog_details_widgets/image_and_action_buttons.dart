@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:news_app/models/news_model.dart';
+import 'package:news_app/utils/functions/share_url.dart';
 import 'package:news_app/widgets/shimmer_widgets/image_placeholder_shimmer.dart';
 
 class BlogImageAndActionButtons extends StatelessWidget {
@@ -56,7 +57,7 @@ class BlogImageAndActionButtons extends StatelessWidget {
             const SizedBox(width: 8.0),
             FloatingActionButton(
               heroTag: 'share',
-              onPressed: () {},
+              onPressed: () => shareUrl(context, url: news.url),
               shape: const CircleBorder(),
               backgroundColor: Theme.of(context).cardColor,
               child: const Icon(IconlyBroken.send),

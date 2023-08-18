@@ -18,9 +18,11 @@ class HomeScreenBody extends StatelessWidget {
         const SizedBox(
           height: 16.0,
         ),
-        newsType == NewsType.allNews
-            ? const Expanded(child: AllNewsView())
-            : const TopTrendingView(),
+        Expanded(
+          child: newsType == NewsType.allNews
+              ? const AllNewsView()
+              : const TopTrendingView(),
+        )
       ],
     );
   }
