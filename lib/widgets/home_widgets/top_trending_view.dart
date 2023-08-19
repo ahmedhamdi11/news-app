@@ -46,7 +46,7 @@ class TopTrendingView extends StatelessWidget {
                     child: Swiper(
                       itemWidth: w * 0.9,
                       layout: SwiperLayout.STACK,
-                      itemCount: 5,
+                      itemCount: homeProvider.topTrendingData.length,
                       itemBuilder: (context, index) => TopTrendingArticleItem(
                         news: homeProvider.topTrendingData[index],
                       ),
@@ -57,6 +57,9 @@ class TopTrendingView extends StatelessWidget {
             ),
           ],
         );
+
+      default:
+        return const SizedBox();
     }
   }
 }

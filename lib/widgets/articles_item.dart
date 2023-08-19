@@ -71,25 +71,29 @@ class ArticleItme extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
+
+                    const SizedBox(width: 12.0),
+
                     // article title ,date
                     Expanded(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             news.title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          const SizedBox(
-                            height: 4.0,
-                          ),
+
+                          const SizedBox(height: 4.0),
+
+                          // time ago
                           Align(
                             alignment: Alignment.centerRight,
                             child: Text('🕑 ${news.timeAgo}'),
                           ),
+
+                          // date time and open link button
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

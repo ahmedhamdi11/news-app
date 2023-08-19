@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/utils/custom_shimmer.dart';
 
-class AllNewsShimmer extends StatelessWidget {
-  const AllNewsShimmer({super.key});
+class ArticlesShimmer extends StatelessWidget {
+  const ArticlesShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {

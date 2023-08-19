@@ -74,7 +74,7 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
     try {
       Response response = await apiServices.get(
-        endPoint: 'top-headlines?category=general&pageSize=20',
+        endPoint: 'top-headlines?category=technology&country=us&pageSize=20',
         headers: {'X-Api-Key': kApiKey},
       );
 

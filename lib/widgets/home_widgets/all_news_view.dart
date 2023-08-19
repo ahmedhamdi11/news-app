@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/constents/enums.dart';
 import 'package:news_app/providers/home_provider.dart';
+import 'package:news_app/widgets/articles_listview.dart';
 import 'package:news_app/widgets/error_view_widget.dart';
-import 'package:news_app/widgets/home_widgets/articles_listview.dart';
 import 'package:news_app/widgets/home_widgets/pagination_control.dart';
 import 'package:news_app/widgets/home_widgets/sortyby_drop_menu.dart';
-import 'package:news_app/widgets/shimmer_widgets/all_news_shimmer.dart';
+import 'package:news_app/widgets/shimmer_widgets/articles_shimmer.dart';
 import 'package:provider/provider.dart';
 
 class AllNewsView extends StatelessWidget {
@@ -37,7 +37,7 @@ class AllNewsViewBody extends StatelessWidget {
 
     switch (homeProvider.fetchAllNewsState) {
       case ApiStatsEnum.loading:
-        return const AllNewsShimmer();
+        return const ArticlesShimmer();
 
       case ApiStatsEnum.failure:
         return ErrorViewWidget(
@@ -47,8 +47,11 @@ class AllNewsViewBody extends StatelessWidget {
 
       case ApiStatsEnum.success:
         return ArticlesListView(
-          allNews: homeProvider.allNewsData,
+          news: homeProvider.allNewsData,
         );
+
+      default:
+        return const SizedBox();
     }
   }
 }

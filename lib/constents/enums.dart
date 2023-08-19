@@ -10,6 +10,7 @@ enum SortByEnum {
 }
 
 enum ApiStatsEnum {
+  initialState,
   loading,
   success,
   failure,

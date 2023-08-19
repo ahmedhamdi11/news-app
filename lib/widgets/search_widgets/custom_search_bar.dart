@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:news_app/providers/search_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({
@@ -11,17 +13,18 @@ class CustomSearchBar extends StatefulWidget {
 }
 
 class _CustomSearchBarState extends State<CustomSearchBar> {
-  late final TextEditingController searchController;
-
   @override
   void initState() {
-    searchController = TextEditingController();
+    Provider.of<SearchProvider>(context, listen: false).searchController =
+        TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    searchController.dispose();
+    Provider.of<SearchProvider>(context, listen: false)
+        .searchController
+        .dispose();
     super.dispose();
   }
 
@@ -39,9 +42,22 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
         Flexible(
           child: TextFormField(
             magnifierConfiguration: TextMagnifierConfiguration.disabled,
-            controller: searchController,
+            controller: Provider.of<SearchProvider>(context, listen: false)
+                .searchController,
             textInputAction: TextInputAction.search,
             autofocus: true,
+            onChanged: (value) {
+              if (value.isEmpty) {
+                Provider.of<SearchProvider>(context, listen: false)
+                    .resetSearchStateToInit();
+              }
+            },
+            onFieldSubmitted: (value) {
+              if (value != '') {
+                Provider.of<SearchProvider>(context, listen: false)
+                    .fetchSearchData(query: value);
+              }
+            },
             decoration: InputDecoration(
               isDense: true,
               fillColor: Theme.of(context).cardColor,
@@ -62,7 +78,13 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
         // clear search field button
         IconButton(
-          onPressed: () => searchController.clear(),
+          onPressed: () {
+            Provider.of<SearchProvider>(context, listen: false)
+                .searchController
+                .clear();
+            Provider.of<SearchProvider>(context, listen: false)
+                .resetSearchStateToInit();
+          },
           icon: const Icon(
             IconlyBroken.close_square,
             color: Colors.red,
