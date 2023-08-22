@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:news_app/models/news_model.dart';
+import 'package:news_app/providers/bookmarks_provider.dart';
 import 'package:news_app/screens/blog_details_screen.dart';
 import 'package:news_app/screens/webview_screen.dart';
 import 'package:news_app/utils/cusom_page_route_tranition.dart';
 import 'package:news_app/widgets/shimmer_widgets/image_placeholder_shimmer.dart';
+import 'package:provider/provider.dart';
 
-class ArticleItme extends StatelessWidget {
-  const ArticleItme({
+class BookmarksItem extends StatelessWidget {
+  const BookmarksItem({
     super.key,
     required this.news,
   });
@@ -55,22 +58,19 @@ class ArticleItme extends StatelessWidget {
                 child: Row(
                   children: [
                     // article image
-                    Hero(
-                      tag: news.title + news.url,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: CachedNetworkImage(
-                          width: w * 0.24,
-                          height: w * 0.24,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12.0),
+                      child: CachedNetworkImage(
+                        width: w * 0.24,
+                        height: w * 0.24,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) => Image.asset(
+                          'assets/images/empty_image.jpg',
                           fit: BoxFit.cover,
-                          errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/empty_image.jpg',
-                            fit: BoxFit.cover,
-                          ),
-                          placeholder: (context, url) =>
-                              const ImagePlaceholderShimmer(),
-                          imageUrl: news.urlToImage,
                         ),
+                        placeholder: (context, url) =>
+                            const ImagePlaceholderShimmer(),
+                        imageUrl: news.urlToImage,
                       ),
                     ),
 
@@ -128,6 +128,30 @@ class ArticleItme extends StatelessWidget {
                       ),
                     )
                   ],
+                ),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: InkWell(
+                  onTap: () {
+                    Provider.of<BookmarksProvider>(context, listen: false)
+                        .deleteBookmark(news);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(12),
+                      ),
+                    ),
+                    child: const Icon(
+                      IconlyBroken.delete,
+                      color: Colors.white,
+                      size: 22,
+                    ),
+                  ),
                 ),
               ),
             ],

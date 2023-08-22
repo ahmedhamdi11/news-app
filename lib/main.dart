@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:news_app/constents/theme_data.dart';
 import 'package:news_app/models/news_model.dart';
+import 'package:news_app/providers/bookmarks_provider.dart';
 import 'package:news_app/providers/home_provider.dart';
 import 'package:news_app/providers/theme_provider.dart';
 import 'package:news_app/screens/splash_screen.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (context) => BookmarksProvider()..getBookmarks(),
+        ),
         ChangeNotifierProvider(
           create: (context) {
             //Notify about theme changes

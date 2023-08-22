@@ -24,7 +24,6 @@ class ArticlesListView extends StatelessWidget {
               curve: Curves.fastLinearToSlowEaseIn,
               //flipAxis: FlipAxis.y,
               child: ArticleItme(
-                index: index,
                 news: news[index],
               ),
             ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:news_app/providers/bookmarks_provider.dart';
 import 'package:news_app/widgets/bookmarks_widgets/bookmarks_listview.dart';
+import 'package:news_app/widgets/bookmarks_widgets/no_bookmarks_view.dart';
+import 'package:provider/provider.dart';
 
 class BookmarksScreen extends StatelessWidget {
   const BookmarksScreen({super.key});
@@ -20,7 +23,9 @@ class BookmarksScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: const BookmarksListView(),
+      body: Provider.of<BookmarksProvider>(context).bookmarks.isEmpty
+          ? const NoBookmarksView()
+          : const BookmarksListView(),
     );
   }
 }

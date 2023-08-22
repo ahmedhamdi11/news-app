@@ -5,8 +5,12 @@ import 'package:news_app/models/news_model.dart';
 import 'package:news_app/widgets/blog_details_widgets/blog_details_body.dart';
 
 class BlogDetailsScreen extends StatelessWidget {
-  const BlogDetailsScreen({super.key, required this.news});
+  const BlogDetailsScreen({
+    super.key,
+    required this.news,
+  });
   final NewsModel news;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
