@@ -1,22 +1,27 @@
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/utils/functions/calc_time_ago.dart';
 
+part 'news_model.g.dart';
+
+@HiveType(typeId: 0)
 class NewsModel {
-  final String newsId,
-      sourcName,
-      authorName,
-      title,
-      description,
-      url,
-      urlToImage,
-      publishedAt,
-      content,
-      timeAgo;
+  @HiveField(0)
+  final String title;
+  @HiveField(1)
+  final String description;
+  @HiveField(2)
+  final String url;
+  @HiveField(3)
+  final String urlToImage;
+  @HiveField(4)
+  final String publishedAt;
+  @HiveField(5)
+  final String content;
+  @HiveField(6)
+  final String timeAgo;
 
   NewsModel({
-    required this.newsId,
-    required this.sourcName,
-    required this.authorName,
     required this.title,
     required this.description,
     required this.url,
@@ -38,9 +43,6 @@ class NewsModel {
       timeAgo = calculateTimeAgo(publishedAtDateTime);
     }
     return NewsModel(
-      newsId: jsonData['source']['id'] ?? '',
-      sourcName: jsonData['source']['name'] ?? '',
-      authorName: jsonData['author'] ?? '',
       title: jsonData['title'] ?? '',
       description: jsonData['description'] ?? 'No description found',
       url: jsonData['url'] ?? '',
