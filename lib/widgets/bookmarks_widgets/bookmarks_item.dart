@@ -143,7 +143,7 @@ class BookmarksItem extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     Provider.of<BookmarksProvider>(context, listen: false)
-                        .deleteBookmark(news);
+                        .deleteBookmark(context, news);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(6.0),

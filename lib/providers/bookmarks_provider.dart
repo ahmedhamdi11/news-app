@@ -13,7 +13,7 @@ class BookmarksProvider extends ChangeNotifier {
   toggleBookmark(BuildContext context, {required NewsModel article}) async {
     Box<NewsModel> box = Hive.box<NewsModel>('news_box');
     if (isInBookmarks(article)) {
-      deleteBookmark(article);
+      deleteBookmark(context, article);
     } else {
       box.add(article).then(
             (value) => showMySnackBar(
@@ -43,16 +43,38 @@ class BookmarksProvider extends ChangeNotifier {
     await getBookmarks();
   }
 
-  void deleteBookmark(NewsModel article) async {
+  void deleteBookmark(BuildContext context, NewsModel article) async {
     Box<NewsModel> box = Hive.box<NewsModel>('news_box');
-    await box.deleteAt(
-      bookmarks.indexWhere(
-        (element) =>
-            element.url == article.url &&
-            element.publishedAt == article.publishedAt,
-      ),
-    );
-    await getBookmarks();
+    await box
+        .deleteAt(
+          bookmarks.indexWhere(
+            (element) =>
+                element.url == article.url &&
+                element.publishedAt == article.publishedAt,
+          ),
+        )
+        .then(
+          (value) => showMySnackBar(
+            context,
+            content: 'Removed from bookmarks',
+            backgroundColor: Theme.of(context).cardColor,
+            contentColor: Provider.of<ThemeProvider>(
+              context,
+              listen: false,
+            ).isDarkTheme
+                ? Colors.white
+                : Colors.black,
+            action: SnackBarAction(
+              label: 'UNDO',
+              textColor: Theme.of(context).colorScheme.secondary,
+              onPressed: () {
+                box.add(article);
+                getBookmarks();
+              },
+            ),
+          ),
+        );
+    getBookmarks();
   }
 
   getBookmarks() async {
