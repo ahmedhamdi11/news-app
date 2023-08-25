@@ -27,16 +27,22 @@ class BlogImageAndActionButtons extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: news.urlToImage == ''
-                  ? Image.asset(
-                      'assets/images/empty_image.jpg',
-                      fit: BoxFit.cover,
+                  ? Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        'assets/images/newspaper.png',
+                        height: 300,
+                        fit: BoxFit.cover,
+                      ),
                     )
                   : CachedNetworkImage(
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      errorWidget: (context, url, error) => Image.asset(
-                        'assets/images/empty_image.jpg',
-                        fit: BoxFit.cover,
+                      errorWidget: (context, url, error) => const SizedBox(
+                        height: 300,
+                        child: Center(
+                          child: Icon(Icons.error),
+                        ),
                       ),
                       placeholder: (context, url) =>
                           const ImagePlaceholderShimmer(),
