@@ -37,11 +37,14 @@ class BookmarksItem extends StatelessWidget {
           child: Stack(
             clipBehavior: Clip.none,
             children: [
+              // left corner
               Container(
                 width: w * 0.15,
                 height: w * 0.15,
                 color: Theme.of(context).colorScheme.secondary,
               ),
+
+              // right corner
               Positioned(
                 bottom: 0,
                 right: 0,
@@ -51,6 +54,8 @@ class BookmarksItem extends StatelessWidget {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
+
+              // the item
               Container(
                 padding: const EdgeInsets.all(8.0),
                 margin: const EdgeInsets.all(8.0),
@@ -65,7 +70,7 @@ class BookmarksItem extends StatelessWidget {
                         height: w * 0.24,
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => Image.asset(
-                          'assets/images/empty_image.jpg',
+                          'assets/images/newspaper.png',
                           fit: BoxFit.cover,
                         ),
                         placeholder: (context, url) =>
@@ -130,6 +135,8 @@ class BookmarksItem extends StatelessWidget {
                   ],
                 ),
               ),
+
+              // delete from bookmarks button
               Positioned(
                 top: 0,
                 right: 0,

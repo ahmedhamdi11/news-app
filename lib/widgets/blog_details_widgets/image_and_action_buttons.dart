@@ -56,7 +56,7 @@ class BlogImageAndActionButtons extends StatelessWidget {
                 Provider.of<BookmarksProvider>(
                   context,
                   listen: false,
-                ).toggleBookmark(article: news);
+                ).toggleBookmark(context, article: news);
               },
               shape: const CircleBorder(),
               backgroundColor: Theme.of(context).cardColor,

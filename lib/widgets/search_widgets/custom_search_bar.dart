@@ -13,18 +13,17 @@ class CustomSearchBar extends StatefulWidget {
 }
 
 class _CustomSearchBarState extends State<CustomSearchBar> {
+  late SearchProvider _searchProvider;
   @override
   void initState() {
-    Provider.of<SearchProvider>(context, listen: false).searchController =
-        TextEditingController();
+    _searchProvider = Provider.of<SearchProvider>(context, listen: false);
+    _searchProvider.searchController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    Provider.of<SearchProvider>(context, listen: false)
-        .searchController
-        .dispose();
+    _searchProvider.searchController.dispose();
     super.dispose();
   }
 

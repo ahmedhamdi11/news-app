@@ -34,11 +34,14 @@ class TopTrendingArticleItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: news.urlToImage == ''
-                    ? Image.asset(
-                        'assets/images/empty_image.jpg',
-                        width: w,
-                        height: w * 0.86,
-                        fit: BoxFit.cover,
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/images/newspaper.png',
+                          fit: BoxFit.fill,
+                          width: w,
+                          height: w * 0.85,
+                        ),
                       )
                     : CachedNetworkImage(
                         width: w,

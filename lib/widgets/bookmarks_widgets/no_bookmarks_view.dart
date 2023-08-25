@@ -20,11 +20,17 @@ class NoBookmarksView extends StatelessWidget {
                 curve: Curves.fastLinearToSlowEaseIn,
                 duration: Duration(milliseconds: 1500),
               ),
-              FadeEffect(),
+              FadeEffect(duration: Duration(milliseconds: 1200)),
             ],
-            child: Image.asset('assets/images/bookmark.png'),
+            child: Image.asset(
+              'assets/images/newspaper.png',
+              width: 150,
+              height: 150,
+            ),
           ),
-
+          const SizedBox(
+            height: 16.0,
+          ),
           // text
           Animate(
             effects: const [
@@ -37,7 +43,7 @@ class NoBookmarksView extends StatelessWidget {
             ],
             child: const Text(
               'No bookmarks yet!',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
           ),
           const SizedBox(

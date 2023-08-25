@@ -64,7 +64,7 @@ class ArticleItme extends StatelessWidget {
                           height: w * 0.24,
                           fit: BoxFit.cover,
                           errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/empty_image.jpg',
+                            'assets/images/newspaper.png',
                             fit: BoxFit.cover,
                           ),
                           placeholder: (context, url) =>
