@@ -1,16 +1,9 @@
-# news_app
+# News APP
+News app brings you the latest and trending newsearch about anything or search using the suggeadd to bookmarks.toggle between dark and light themes.open the blog url in a web view, external browse
 
-A new Flutter project.
+## Technologies
+Flutter, API integration (News API)Shared Preferences, pagination, error handling
 
-## Getting Started
+## record from the app
+https://github.com/user-attachments/assets/97759771-2dad-4362-8b19-2800c0059d50
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
